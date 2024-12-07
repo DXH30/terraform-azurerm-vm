@@ -3,6 +3,22 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "os" {
+  type = object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  })
+
+  default = {
+    publisher = "Canonical"
+    offer     = "Ubuntu-24_04-lts"
+    sku       = "server"
+    version   = "latest"
+  }
+}
+
 variable "security_rule" {
   description = "The list of security group rule"
   type        = list(map(string))
