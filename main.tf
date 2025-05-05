@@ -12,21 +12,21 @@ resource "azurerm_resource_group" "vm_rg" {
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.vm_name}-vnet"
+  name                = "vnet-${var.name}-${var.env}"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.vm_rg.location
   resource_group_name = azurerm_resource_group.vm_rg.name
 }
 
 resource "azurerm_subnet" "subnet" {
-  name                 = "${var.vm_name}-subnet"
+  name                 = "subnet-${var.name}-${var.env}-01"
   resource_group_name  = azurerm_resource_group.vm_rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
 resource "azurerm_public_ip" "public_ip" {
-  name                = "${var.vm_name}-public-ip"
+  name                = "pip-${var.name}-${var.env}"
   location            = azurerm_resource_group.vm_rg.location
   resource_group_name = azurerm_resource_group.vm_rg.name
   allocation_method   = "Static"
@@ -39,10 +39,10 @@ resource "tls_private_key" "ssh_key" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                  = var.vm_name
+  name                  = "vm-${var.name}-${var.env}"
   location              = azurerm_resource_group.vm_rg.location
   resource_group_name   = azurerm_resource_group.vm_rg.name
-  size                  = var.vm_size
+  size                  = var.size
   admin_username        = var.admin_username
   network_interface_ids = [azurerm_network_interface.nic.id]
 
@@ -54,7 +54,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    name                 = "${var.vm_name}-osdisk"
+    name                 = "disk-${var.name}-${var.env}"
   }
 
   source_image_reference {

@@ -43,12 +43,12 @@ variable "location" {
   default     = "East US"
 }
 
-variable "vm_name" {
+variable "name" {
   description = "The name of the virtual machine"
   type        = string
 }
 
-variable "vm_size" {
+variable "size" {
   description = "The size of the virtual machine"
   type        = string
   default     = "Standard_B1s"
@@ -57,4 +57,19 @@ variable "vm_size" {
 variable "admin_username" {
   description = "The admin username for the VM"
   type        = string
+}
+
+variable "address_spaces" {
+  description = "VNET Address Spaces"
+  type        = string
+}
+
+variable "address_prefixes" {
+  description = "Subnet Prefixes"
+  type        = string
+}
+
+variable "env" {
+  description = "Environment"
+  type = string
 }
