@@ -7,7 +7,7 @@ terraform {
 }
 
 resource "azurerm_resource_group" "vm_rg" {
-  name     = var.resource_group_name
+  name     = "rg-${var.name}-${var.env}"
   location = var.location
 }
 
