@@ -46,6 +46,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_username        = var.admin_username
   network_interface_ids = [azurerm_network_interface.nic.id]
 
+  lifecycle {
+    ignore_changes = [identity]
+  }
+
   admin_ssh_key {
     username   = var.admin_username
     public_key = tls_private_key.ssh_key.public_key_openssh

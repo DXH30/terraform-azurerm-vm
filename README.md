@@ -38,7 +38,6 @@ No modules.
 | <a name="input_location"></a> [location](#input\_location) | The location of the resource group | `string` | `"East US"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the virtual machine | `string` | n/a | yes |
 | <a name="input_os"></a> [os](#input\_os) | n/a | <pre>object({<br/>    publisher = string<br/>    offer     = string<br/>    sku       = string<br/>    version   = string<br/>  })</pre> | <pre>{<br/>  "offer": "Ubuntu-24_04-lts",<br/>  "publisher": "Canonical",<br/>  "sku": "server",<br/>  "version": "latest"<br/>}</pre> | no |
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group | `string` | n/a | yes |
 | <a name="input_security_rule"></a> [security\_rule](#input\_security\_rule) | The list of security group rule | `list(map(string))` | <pre>[<br/>  {<br/>    "access": "Allow",<br/>    "destination_address_prefix": "*",<br/>    "destination_port_range": "22",<br/>    "direction": "Inbound",<br/>    "name": "AllowSSH",<br/>    "priority": 1000,<br/>    "protocol": "Tcp",<br/>    "source_address_prefix": "*",<br/>    "source_port_range": "*"<br/>  }<br/>]</pre> | no |
 | <a name="input_size"></a> [size](#input\_size) | The size of the virtual machine | `string` | `"Standard_B1s"` | no |
 

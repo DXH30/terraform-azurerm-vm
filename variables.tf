@@ -66,5 +66,5 @@ variable "address_prefixes" {
 
 variable "env" {
   description = "Environment"
-  type = string
+  type        = string
 }
